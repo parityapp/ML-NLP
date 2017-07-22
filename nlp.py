@@ -37,14 +37,12 @@ def load_sample_text(file='data/sample_chat.json', lines=None):
 
 
 def representative_msgs(messages: List[Message]) -> List[Message]:
-    print(messages)
     pass
 
 
 def summarize_msgs(messages: List[Message]) -> str:
-    print(messages)
     pass
 
 
-if __name__ == '__main__':
-    representative_msgs(load_sample())
+def relevant_topics(messages: List[Message]) -> List[str]:
+    pass
