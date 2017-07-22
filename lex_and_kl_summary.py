@@ -1,4 +1,12 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
+
+"""Summarization Routines for Parity App
+   Implementation of lex kl rank algorithm using NLTK
+
+CERN Webfest 2017
+
+"""
+
 import math
 import sys
 from nltk.corpus import wordnet as wn
@@ -9,6 +17,7 @@ STOPWORDS_PATH = 'stopwords.txt'
 
 def get_all_files(directory):
     return sys.argv
+
 
 def load_topic_words(topic_file, n):
     temp_dict = {}
@@ -21,15 +30,15 @@ def load_topic_words(topic_file, n):
     return top_n
 
 
-def cluster_keywords(keylist, outputfile):
-    f = open(outputfile, "w")
+def cluster_keywords(keylist):
+    s = ""
     temp_list = []
     temp_list2 = []
 
     i = 0
     while(i < len(keylist)):
         keyword = keylist[i]
-        f.write(keyword)
+        s += keyword
         # n = len(keylist)
         synset_list = wn.synsets(keyword)
         for single_synset in synset_list:
@@ -59,18 +68,19 @@ def cluster_keywords(keylist, outputfile):
 
             common = set(temp_list).intersection(temp_list2)
             if(common):
-                f.write(",")
-                f.write(next_word)
+                s += ","
+                s += next_word
                 keylist.remove(next_word)
                 temp_list2[:] = []
 
             j = j+1
 
-        f.write("\n")
+        s += "\n"
         keylist.remove(keyword)
         temp_list[:] = []
         temp_list2[:] = []
         i = 0
+    return s
 
 
 def summarize_baseline(directory, outputfile):
