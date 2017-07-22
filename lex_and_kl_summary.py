@@ -13,6 +13,7 @@ from nltk.corpus import wordnet as wn
 from nltk import word_tokenize, sent_tokenize
 
 STOPWORDS_PATH = 'stopwords.txt'
+SUMMARY_MAX = 100
 
 
 def get_all_files(directory):
@@ -83,23 +84,8 @@ def cluster_keywords(keylist):
     return s
 
 
-def summarize_baseline(directory, outputfile):
-    file_list = get_all_files(directory)
-    file_list.sort()
-    sum_text = ''
-    total_len = 0
-    for filename in file_list:
-        f = open(filename, "r")
-        text = f.readlines()[0]
-        f.close()
-        total_len += len(word_tokenize(text))
-        sum_text += text
-        if(total_len >= 100):
-            break
-
-    f = open(outputfile, "w")
-    f.write(sum_text)
-    f.close()
+def summarize_baseline(text):
+    return "\n".join(text.split('\n')[:100])
 
 
 def get_unigram_dist(text):
@@ -124,17 +110,9 @@ def get_unigram_dist(text):
     return unigram_dict
 
 
-def summarize_kl(inputdir, outputfile):
+def summarize_kl(input_text):
 
-    file_list = get_all_files(inputdir)
-    input_text = ''
-    list_sen = []
-    for filename in file_list:
-        f = open(filename, "r")
-        sen = f.read()
-        list_sen.append(sen)
-        input_text = input_text + sen + ' '
-        f.close()
+    list_sen = input_text.split('\n')
 
     input_unigram_dist = get_unigram_dist(input_text)
 
@@ -143,7 +121,7 @@ def summarize_kl(inputdir, outputfile):
     sen_list = []
     sen_ind = []
 
-    while(len(word_tokenize(sum_text)) < 100):
+    while(len(word_tokenize(sum_text)) < SUMMARY_MAX):
         min_kl = 100000.0
         best_sentence = ''
 
@@ -175,8 +153,7 @@ def summarize_kl(inputdir, outputfile):
         sen_list.append(best_sentence)
         sen_ind.append((best_ind_i, best_ind_j))
 
-    with open(outputfile, "w"):
-        f.write(sum_text_to_write)
+    return sum_text_to_write
 
 
 def load_collection_sentences(directory):
