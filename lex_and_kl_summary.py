@@ -16,10 +16,6 @@ STOPWORDS_PATH = 'stopwords.txt'
 SUMMARY_MAX = 100
 
 
-def get_all_files(directory):
-    return sys.argv
-
-
 def load_topic_words(topic_file, n):
     temp_dict = {}
     with open(topic_file) as f:
@@ -211,11 +207,11 @@ def valid(sent, summary, vectDict, threshold):
     return True
 
 
-def summarize_lexpagerank(inputdir, outputfile):
-    sentences = load_collection_sentences(inputdir)
+def summarize_lexpagerank(text):
+    sentences = sent_tokenize(text)
     adjList = dict()
     currRank = dict()
-    vectDict = makeVectDict(inputdir)
+    vectDict = makeVectDict(text)
     edge_threshold = 0.1
 
     for idx, sent in enumerate(sentences):
@@ -262,19 +258,32 @@ def summarize_lexpagerank(inputdir, outputfile):
     for summ in summary:
         sum_to_write = sum_to_write+summ+'\n'
 
-    with open(outputfile, "w") as f:
-        f.write(sum_to_write)
+    return sum_to_write
 
 
 if __name__ == "__main__":
+    text = ""
 
-    directory="/home/cis505/hackathon/trial"
-    #ques 4.1
-    summarize_baseline(directory, "/home/cis505/hackathon/trial_output.txt")
-    
-    #directory="/home1/c/cis530/hw4/dev_input/dev_10"
-    #ques 4.2
-    summarize_kl(directory,"/home/cis505/hackathon/trial_output2.txt.txt")
-    
-    #ques4.3
-    #summarize_lexpagerank("/home1/c/cis530/hw4/dev_input/dev_10","/home1/a/agrima/hw4_agrima/trial3.txt")
+    for file in sys.argv[1:]:
+        with open(file, 'r') as f:
+            text += f.read()
+            text += '\n'
+
+    base = summarize_baseline(text)
+
+    kl = summarize_kl(text)
+
+    lex = summarize_lexpagerank(text)
+
+    print("BASELINE SUMMARY")
+    print("================\n")
+    print(base)
+
+    print("KL SUMMARY")
+    print("==========\n")
+    print(kl)
+
+    print("LEX SUMMARY")
+    print("===========\n")
+    print(lex)
+
