@@ -12,7 +12,7 @@ This module contains the routines for:
 
 from typing import List, Dict, NewType
 from datetime import datetime
-import dateutil
+import dateutil.parser
 import json
 
 
@@ -27,6 +27,10 @@ def load_sample(file='data/sample_chat.json'):
         d['timestamp'] = dateutil.parser.parse(d['timestamp'])
 
     return sample
+
+
+def load_sample_text(file='data/sample_chat.json'):
+    return ". ".join(d['content'] for d in load_sample(file))
 
 
 def representative_msgs(messages: List[Message]) -> List[Message]:
