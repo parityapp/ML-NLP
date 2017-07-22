@@ -1,0 +1,519 @@
+*** johannesV has joined #gnuenterprise
+*** btami has joined #gnuenterprise
+*** reinhard has joined #gnuenterprise
+*** kilo has joined #gnuenterprise
+*** chillywi1ly has joined #gnuenterprise
+<kilo> mornin'
+*** chillywilly has quit IRC
+<chillywilly> bah
+<reinhard> good morning
+<chillywilly> frickin' IP changed and now my ssh session is slow as molasses
+<btami> morning
+<btami> chillywilly: goot articles from W.Ambler yesterday, thx afain
+<btami> s/afain/again
+<btami> good
+* btami can't type early morning
+<kilo> you can type early morning just like this: "early morning" 8-))
+<chillywilly> btami: yea that site rocks
+<chillywilly> wow, major lag now to the server at work...
+<chillywilly> *sigh*
+<chillywilly> running a traceroute and it is not looking pretty
+<btami> derek have to read that :)
+<chillywilly> I love it when it does: 13  * * *
+<chillywilly> 14  * * *
+<chillywilly> BAH
+<chillywilly> oh I bet it is because they block ICMP packets
+<kilo> yes
+<chillywilly> our ISP at the office does that
+<chillywilly> hmmm
+<chillywilly> still ssh is really painful and slow :(
+<chillywilly> was workign fine earlier
+<chillywilly> man this blows
+*** chillywi1ly has joined #gnuenterprise
+*** chillywilly has quit IRC
+*** dcmwai has quit IRC
+*** dcmwai has joined #gnuenterprise
+*** SachaS has joined #gnuenterprise
+<SachaS> good morning
+<kilo> morning SachaS
+<SachaS> hi kilo
+<btami> hi
+<btami> SachaS: please look at http://www.agiledata.org/ (if you havn't lookd at)
+<kilo> and check emails
+*** dimas_ has quit IRC
+*** dcmwai has quit IRC
+*** SachaS has quit IRC
+*** SachaS has joined #gnuenterprise
+*** dimas has joined #gnuenterprise
+*** reinhard has quit IRC
+*** reinhard has joined #gnuenterprise
+*** btami has quit IRC
+*** kilo has quit IRC
+*** reinhard has quit IRC
+*** ajmitch has quit IRC
+*** dsmith has joined #gnuenterprise
+<dsmith> Good Morning, #gnuenterprise
+<dsmith> Is svn broke again?
+*** Morphous has joined #gnuenterprise
+*** jamest has joined #gnuenterprise
+<SachaS> hi dsmith
+*** Amorphous has quit IRC
+<dsmith> SachaS: Greetings
+*** Amorphous has joined #gnuenterprise
+*** johannesV_ has joined #gnuenterprise
+*** reinhard has joined #gnuenterprise
+*** wayneg has joined #gnuenterprise
+*** Morphous has quit IRC
+*** johannesV has quit IRC
+<SachaS> servus
+<SachaS> servus austria ;)
+<reinhard> grüezi
+<reinhard> ;-)
+*** jcater has quit IRC
+<SachaS> reinhard: you saw the abstraction of my diagram ... another abstraction level will be added :) one on top of the bus. its no longer simply publish/subscribe but its a business process on top of publish/subscribe.
+<SachaS> there is a collaborative business process handled in the ebXML software
+<SachaS> there is a business business process handled in the business application (gnue appserver app with a possibly public procedure which uses business classes and their procedures)
+<SachaS> but then there is a new business process
+<SachaS> a business process describing how applications interact with each other, this might be called a integration business process.
+<derek> <btami> derek have to read that :)
+<derek> im not sure what that is about
+<derek> for the record i am probably one of the few here that has made a commerical application that actually used a purely object database
+<derek> so telling me to look at the advantages of objects is silly
+<derek> you act as if i dont know what objects are
+<derek> or don't understand they can be valuable
+<derek> i will argue teh OTHER way
+<derek> what REAL experience do you have on an enterprise level with object data storage?
+<derek> i can state i built and maintained commercial ERP software for major law firms using object database technology
+<derek> so i know some of the real advantages and real pitfalls
+<derek> not "book" knowledge, but real practical implementation
+<derek> for the record http://www.omegalegal.com/ is the software i am talking about
+*** jcater has joined #gnuenterprise
+*** dhill1 has joined #gnuenterprise
+<derek> jcater or jamest
+<derek> is there a way to force focus on an entry?
+<jcater> jamest
+<derek> in GFEntry
+<jcater> what did I win?
+<derek> i dont see in triggers or properties to set such a thing
+<derek> basically looking for something like
+<jcater> I think it's just
+<jcater> setFocus(entryName)
+<derek> blk.entry.setFocus
+<jcater> or form.setFocus(entryName)
+<derek> hmm okay
+<derek> ah so its probably in GFForm
+<derek> yip GFForm
+<derek> GFForm.py:    self._triggerFunctions = {'setFocus':{'function':self.tri
+<derek> thanks was looking in wrong area
+<derek> do we have a "tool" to whip through all the self._triggerFunctions
+*** btami has joined #gnuenterprise
+<derek> and print out documentation on that?
+<derek> as seems like 40% of the questions the guys have here (and me too) is how do i do X
+<jcater> no
+<jcater> been thinking about that
+<jcater> but haven't had a chance to do it
+<derek> we are getting better at looking the source for trigger definitions
+<jcater> have you looked in the Dev Guide?
+<derek> no
+<derek> well maybe
+<derek> i had the guys pritn out something
+<derek> but they complained it was missing a lot
+<derek> might have been an old version
+<derek> you have link to most current?
+<jcater> it is missing a lot
+<derek> i will download and print
+<jcater> but it's also 76 pages
+<jcater> http://www.gnuenterprise.org/tools/forms/docs/Developers-Guide.pdf
+<derek> one thing we want to do is hep document
+<jcater> the stuff that is there is pretty complete and up-to-date
+<jcater> Appendix C is what you want
+* jcater may try to spend a few minutes today updating that
+<derek> printing it now
+<btami> <derek> <btami> derek have to read that :)
+<btami> http://www.agiledata.org/essays/mappingObjects.html
+<btami> http://www.ambysoft.com/persistenceLayer.pdf
+<btami> jcater: hav you got a little time today?
+<btami> <jcater> well, I don't have time to give my opinion
+<btami> <jcater> but I have a strong opinion about all of this
+<jcater> probably not
+<btami> :(
+* jcater is about 2 weeks behind schedule on my current project
+<derek> btami: this guy explains exactly my PROBLEMS with the approach
+<derek> There is an impedance mismatch between the object and relational paradigms, and this mismatch leads object and data practitioners to different designs.
+<derek> basically he argues build all the classes and such and make the database structure to mimic those
+<derek> i.e. lose all the power of the relational database storage system you are using
+<derek> he tries to pass this off as "anyone that is not pro object is an idiot and they need to change how they think"
+<derek> if they understood objects they would design their databases to mimic them
+<derek> when in fact peopel that understand what relational design was designed to solve take advantage of it
+<derek> and really do not want to restrucutre their data to be stored like objects as they lose the features they inherently built in to take advantage of teh system
+<derek> clearly if one wants to say "build your classes and make your storage match"
+<derek> why bother using relational database system?
+<derek> save the headache and use an object or hierarchial storage system
+<derek> that has an "odbc" driver that allows you to map your classes to sql tables for other applications to "read" the data
+<derek> i do think mapping can (and should exist) that in my opinion is WHAT appserver should be doing
+<derek> i do not think we should be making whacked schemas to match classes
+<derek> that is my opinion (and like standards that great thing about opinions are there are so many to choose from)
+<btami> derek: maybe you are reading another article :)
+<btami> i can't read nowhere
+<btami> he tries to pass this off as "anyone that is not pro object is an idiot and they need to change how they think"
+<btami> as i understand, these papers all about how to use OO languages/design _with_ rdbms
+<btami> and Python is an OO language...
+<btami> our DBSIG2 abstraction is a mapping too
+<btami> appserver is another one
+<btami> just enhanced with procedures
+<btami> maybe i'm wrong
+*** bluesbaron_ has left #gnuenterprise
+*** Amorphous has quit IRC
+* btami thinks derek have to read the gnue-appserver/doc/whitepaper.txt again
+<derek> btami my point is he says CLEARLY
+<derek> dont use traditional relational structures 
+<derek> they are bad
+<derek> make them match you classes
+<derek> http://www.agiledata.org/essays/drivingForces.html
+<derek> he starts by attackign that relational databases are all most always poorly designed
+<derek> "First, your legacy database design likely has some significant problems."
+<derek> then he adds even if it is not designed badly it still wont work
+<derek> "Second, even if the existing database design is very good there can be significant differences in the way that you map objects to relational databases."
+<derek> im all for mapping and i think site actually has some good points
+<derek> and is valuable
+<derek> however on the whole they advocate losing relational functionality in favor of making the mapping easier
+<derek> as evidence by the line i just pasted
+<derek> "even if the relational design is good"
+<derek> "it might not be good because it doesnt map well to objects"
+<derek> that is how i read it
+<derek> and the previous two times we have written appserver
+<derek> this has proven to be the case
+<derek> objects get discussed
+<derek> then we start going down the class path (no pun intended)
+<derek> at which point in time we decide to map to relational tables
+<derek> and soon it turns into extending the relational tables to account for object needs
+<derek> then it turns into altering relational tables completely to make mappings easier
+<btami> derek: stop
+<derek> and then it turns into the "drivers" for forms don't work well anymore
+<btami> have you read whitepaper.txt ?
+<derek> and then the people doing the work on appserver get pissed off an leave because they really want an object database and it just took them a while to realize
+<derek> it
+<btami> is it good or bad for your needs?
+<derek> btami: im expressing the pattern not saying that is the goal
+<derek> it is good.. i like the ideas in the whitepaper (if it is the same one i read many moons ago)
+<derek> my point being you are pointing me to a site say
+<derek> ing
+<derek> "read this and then you will be enlightened"
+<derek> and im saying
+<btami> i'v never sait this !!!
+<derek> "what you want me to be enlightened on is exactly what has killed appserver development in the past"
+<btami> i know nothing the old appserver
+<derek> <btami> derek have to read that :)
+<btami> i'm trying to use the new :)
+<derek> so you didn't want me to read it to be enlightened?
+<derek> im not asking you to use the old
+<btami> no, just read :)
+<derek> im saying "don't forget history"
+<derek> it has a way of repeating itself
+<btami> if you agree on the whitepaper, what is you against with the current implementation?
+<btami> i think it fallows the whitepaper
+<derek> im not against the current implementation
+<derek> someone is telling you lies if they have said such a thing
+<derek> this conversation started out of the "gcd" discussion
+<derek> i simply asked "why" a gcd
+<derek> and how does the gcd replace and/or compliment the gsd
+<derek> is a gcd necessary
+<btami> hmm
+<btami> i think yes
+<derek> and instantly i was attacked as "not understanding objects" and "hating the appserver"
+<derek> the discussion on gcd's had me worried we were ditching sound relational structures in favor of makign structures that were "easy to map"
+<derek> i merely raised the flag to be cautious
+<derek> and now somehow "i hate appserver"
+<btami> ok
+<derek> apparently you can't question anything here or you hate the product?
+<btami> i think the .gcd problem is
+<derek> as much as i give jamest and jcater crap about forms.. (read old logs with me telling them i hate blocks)
+<btami> what format will be used for formalise gnue-packages?
+*** uruboro has joined #gnuenterprise
+<derek> you would be astonished that im trying like hell to get forms used a major setting
+<derek> for a major application
+<derek> point: there has to be open discussion with out getting personally offended
+<derek> because i question the validity of something doesnt mean its the wrong thing (i.e. i have come to actually like blocks some now that they are being used (when i couldnt see their use initially))
+<btami> sure
+<derek> and because someone asks questions doesnt mean they dont like the product
+<derek> you will have to excuse my frustration
+<btami> ok
+<reinhard> * derek is pretty adamantly against "objects"
+<reinhard> <derek> i want an app server
+<reinhard> <derek> not an object server
+<reinhard> <derek> there has been much debate (and likely at some point either this project or appserver will fork over this issue)
+<reinhard> this is what you said btw
+<derek> but i kind of feel like you, kilo and reinhard have turned this into a personal attack
+<derek> that i hate appserver
+<derek> and as you just pasted
+<derek> i WANT appserver
+<derek> and yes have "concerns" about objects
+<reinhard> just to remind you
+<derek> but not remember we are using the term object in different ways
+<reinhard> btami has asked you what you think of gcds
+<reinhard> and you answered that likely "appserver or this project will fork"
+<reinhard> note that appserver is not part of this projects
+<reinhard> project
+<reinhard> it's appserver on the one side and "this project" on the other side
+<derek> the comment about the fork is that once already a fork has occured over this issue
+*** wendall911 has joined #gnuenterprise
+* reinhard will shut up again now
+<derek> reinhard: my point on the fork is that either gnue could end up with 2 appservers if there is fundamental disagreement
+<derek> or if someone didnt like forms being relational.. they could fork the project as a whole
+* derek did not say this would happen or that it was desired to happen in fact it would be nice to be avoided at all costs
+<derek> just pointed out that it could likely happen if the debate is intense as it has happened once
+<derek> example....
+<derek> treshna and bond-db
+<derek> http://freshmeat.net/projects/bonddb/
+<derek> i like the whitepaper and appserver very much
+<derek> i am itching to be able to use it here
+<derek> im not opposed to gcd's, but i think deciding on them will bring on great debate
+<derek> i htink at some point we need to schedule an irc meeting to hash out how to handle class definitions and module packing
+<derek> as btami has a very valid issue that its hard to make appserver packages without some strucutre like that
+<btami> ok, just for log
+<btami> i like all you guys :)
+<btami> really
+<derek> rofl
+<derek> they probably don't have budweiser commericals in hungary, but...
+<derek> "I love you man!"
+<derek> followed by
+<derek> "You aren't getting my bud light" 
+<derek> would be an appropriate joke here 
+<dhill1> half the audience gets the joke, the other half scratch their heads.
+<SachaS> derek, have you tried (within last 3 months) the sample in appserver?
+<btami> i like SachaS too :)
+<SachaS> thanks btami
+<SachaS> i like you too
+<SachaS> haha
+<btami> :)))
+<reinhard> i like SachaS especially
+<reinhard> he has done more for appserver lately than probably any other
+<reinhard> except those getting paid for it
+<SachaS> thanks reinhard
+<reinhard> and btami
+<reinhard> for getting this stuff to run under windows
+<reinhard> and jamest and jcater
+<reinhard> for their great work on forms, reports, and common
+<reinhard> and derek
+<SachaS> actually i liked siesel too
+<reinhard> for taking the blame for everything :)
+<btami> just for log again, i hate win :)
+<SachaS> he had an open ear on mostly everything i said
+<SachaS> i like johannesV_ commits :)
+<reinhard> oh sorry
+<reinhard> yes of course i like johannesV_, too :)
+<reinhard> now could someone please pass the joint to me?
+<reinhard> :-P
+<SachaS> rofl
+<btami> ok,please stop, enough love here :)
+<btami> errm, just svn needs some more love, hey jamest!
+<SachaS> oh i like reinhard very much by the way
+* SachaS going to the movies, needs a break. "Day after tomorrow"
+*** uruboro has quit IRC
+<jcater> hmm
+<jcater> did someone pass some weed around that I missed?
+<jcater> seems like a hippie love fest in here
+<chillywilly> ummmm
+<chillywilly> I will kick all your asses
+<chillywilly> is that better jcater ?
+<jcater> oooo
+<jcater> kinky, eh
+<derek> troutslap == gnue slang for take a hit off the doobie and pass it on
+*** johannesV_ has quit IRC
+*** Amorphous has joined #gnuenterprise
+*** sjc has joined #gnuenterprise
+*** dhill1 has quit IRC
+<dsmith> jamest: Heh. Did svn hoze again?  Did you disable that killall?
+<dsmith> s/Heh/Hey/
+<jcater> the killall wasn't a problem
+<dsmith> OK.
+<chillywilly> wassup dale?
+<chillywilly> man I am tired
+* chillywilly sleeps on his keyboard
+* dsmith hands cw a mountain dew
+* dsmith waits for qt to compile again
+<chillywilly> evil
+<chillywilly> ;P
+<chillywilly> might as well run Gentoo
+<chillywilly> ;P
+<chillywilly> oh wait that was bddebian who was calling me a heretic
+<dsmith> s/compile/cross-compile/
+<chillywilly> nevermin
+<chillywilly> d
+<chillywilly> oh ye
+<chillywilly> a
+<chillywilly> mr. frickin' embedded systems
+<chillywilly> you suck
+<chillywilly> I want to do embedded linux
+<chillywilly> embed this!
+<dsmith> We are looking for two people.
+<chillywilly> where are you located?
+<dsmith> Cleveland Ohio
+<chillywilly> hmmm
+<chillywilly> what kinda stuff are you working on?
+<dsmith> 410k
+<chillywilly> hmm?
+<chillywilly> 401k?
+<dsmith> chillywilly: Automotive scan tools.
+<dsmith> OBDII stuff
+<chillywilly> OBD II stuff?
+<chillywilly> ok
+<chillywilly> cool
+<chillywilly> a friend works for autologic company
+<chillywilly> well havoc is doing some work there too
+<chillywilly> but they have to use VB
+<dsmith> Ewwww
+<chillywilly> because of the PDA manufacturer
+<dsmith> We were going to use mips (Alchemy) because of some costly manufacturng issues, we are now looking at powerpc.
+<chillywilly> cool
+<dsmith> s/because/but because/
+<chillywilly> so how low level do you go with it? you get to use C or what?
+<dsmith> So I have another new toy to play with.
+<dsmith> C
+<dsmith> Device Drivers.
+<chillywilly> how many device drivers did you write before you started working there/
+<dsmith> On Linux? None.
+<chillywilly> HEH
+<dsmith> But I've fexed several
+<dsmith> Alsa mostly
+<chillywilly> oh dude
+<dsmith> I've written dos and os/2 drivers, and I've done plenty of embedded systems with no os.
+<chillywilly> Phil Keaggy was in town yesterday
+<dsmith> Cool.
+<dsmith> My Man
+<chillywilly> I was lame and didn't go see him though
+<dsmith> My Phil.
+<dsmith> s/My/Mr/
+<dsmith> I have a home project I'm toying with.
+<chillywilly> what is that?
+<dsmith> A tape looper kind of box
+<chillywilly> I see
+<dsmith> I got a webpal for cheap.
+<chillywilly> k
+<dsmith> With another ISA soundcard, I think I can turn it into a jamman like device.
+<dsmith> Not enough time though
+<chillywilly> man I am tired
+<dsmith> And then sooperlooper just came into Debian, and it's inspiring me again.
+<dsmith> chillywilly: Get to Work!
+<chillywilly> I am
+<chillywilly> I have a web support issues now
+*** btami has quit IRC
+<dsmith> chillywilly: You know I went to the very first Glass Harp reunion concert?
+<chillywilly> ok
+<dsmith> Ya it was great. He wrote a song about it. "Wish you were there".
+*** kilo has joined #gnuenterprise
+*** reinhard has quit IRC
+<SachaS> hi kilo
+<kilo> hi SachaS
+<SachaS> how are you?
+<kilo> angry a little bit
+<SachaS> why is that?
+<chillywilly> yeek
+<kilo> installing windows on one machine, reparing some fscking HDD on the other, and my 2nd favorite keyboard is completely silly...
+<kilo> and i have just read the irc log...
+<SachaS> oh ok.
+<SachaS> are you already modelling your hr application?
+<SachaS> on paper ... maybe
+<kilo> well, work has begun already
+<kilo> use case diagrams and class diagrams are built
+<kilo> and being refined over and over
+<SachaS> ok. hmmm. ok. you found useful information in the old .gcd files?
+<kilo> yes, there are some. i just can't see why this debate is on...
+<kilo> you played with classrepo.gfd. I also did. so we two are VERY much aware that something has to be done...
+<SachaS> i think the ones who are actually working with appserver see the issue from a user stand point.
+<kilo> and let's agree from now on that we don't use the word 'object', but say... emm.... errr... 'blopp' instead 8-)))
+<dsmith> tcejbo
+<kilo> how do you prononuce that?
+<dsmith> dunno
+<dsmith> Can't pronounce it, keeps people from yelling.
+<kilo> or it could be 'blap', so you can slap with a blap
+<dsmith> tseebo
+<dsmith> Everyone knows that objects are backwards, anyway.
+<SachaS> haha
+* dsmith runs and hides
+<SachaS> what do you mean with "objects are backwards" dsmith? that tcejbo is object written backward or do you mean something else?
+<dsmith> SachaS: Ya, just a stupid joke/idea
+<dsmith> SachaS: TO sort of go along with the objective discussions going on lately
+<SachaS> ok.
+*** sjc has quit IRC
+*** dsmith has quit IRC
+<kilo> SachaS: could you please mail me today's mailings on subject gcd? can't get hold of them
+<kilo> lost in space they are
+<SachaS> ok.
+<SachaS> sent
+<kilo> thx
+<kilo> perfect. just tumbled over my son's ball... just like an elephant i was... perfect day
+*** reinhard has joined #gnuenterprise
+*** jamest has quit IRC
+<SachaS> servus reinhard. cant you sleep?
+<kilo> servus reinhard, servus austria
+<reinhard> hi
+<reinhard> off to sleep now
+*** reinhard has quit IRC
+<SachaS> story: Open source on offense in ERP and business applications market
+<SachaS> http://software.newsforge.com/software/04/05/22/193215.shtml
+<kilo> quit sleeping on keyboard
+*** kilo has quit IRC
+*** dhill1 has joined #gnuenterprise
+*** jcater has quit IRC
+<dhill1> any network gurus here feeling charitable towards idiots today?
+<dhill1> I'm an idiot seeking help...
+<dhill1> I just got a linux box running last week and want to network it with my winXP box.  
+<dhill1> I'm pretty sure I have all the required parts, but lack a clue how to configure it.
+<SachaS> dhill1 are both machines connected to a switch or hub?
+<dhill1> I have a hub I can use.  The linux box has 2 ethernet cards.
+<SachaS> win and linux box connected?
+<SachaS> physically?
+<dhill1> Not yet.  My dsl line comes in to the win box. I was hoping to have the dsl go to the linux box, then connect the linux and win.
+<dhill1> does that make any sense?
+<SachaS> makes sense to me
+<dhill1> So dsl connects to linux eth0
+<dhill1> and linux eth1 to win
+<dhill1> eth0 would use dhcp
+<SachaS> linux eth1 goes to hub.
+<SachaS> win ethernet goes to hub
+<dhill1> ok
+<SachaS> or if you have a crossover cable you can connect both straight with each other ...
+<dhill1> probably don't have a crossover cable
+<SachaS> ok.
+<SachaS> so both into hub
+<dhill1> ok
+<dhill1> how do I set ip address for win box?
+<dhill1> do I do something with netmask, gateway address, broadcast address?  Like I said, I'm clueless.
+<SachaS> then you can give linux eth1 an ip like 192.168.1.1 with netmask 255.255.255.0
+<SachaS> we try first to let both machines (linux and win) communicate
+<SachaS> what linux distribution are you using?
+<SachaS> depending on the distribution you have a tool that does it for you.
+<dhill1> mepis
+<SachaS> do you have a graphical tool to setup the network?
+<SachaS> with that distribution?
+<dhill1> yup.  looks pretty easy.
+<dhill1> do I have to worry about gateway or broadcast?  One is 192.68.0.1, the other is 192.68.0.255
+<SachaS> your linux box will be the gateway
+<SachaS> so you will set whatever IP address you give your linux eth1 as gateway on your win machine.
+<SachaS> linux eth1: 192.168.1.1 netmask 255.255.255.0
+<SachaS> win: 192.168.1.2 netmask 255.255.255.0 gateway: 192.168.1.1
+<dhill1> It's that easy?  I'll need to go away for a few minutes to swap cables around.
+<SachaS> ok.
+*** dhill1 has quit IRC
+<SachaS> ?
+*** dhill1 has joined #gnuenterprise
+<dhill1> SachaS: I must have done something wrong.
+<dhill1> Neither machine could ping the other.
+<SachaS> http://www.tldp.org/ might guide you to a introduction of networking.
+<dhill1> does it matter which ports I use on the hub?
+<dhill1> I'll check that out, thanks.
+<SachaS> should not matter.
+*** jcater has joined #gnuenterprise
+*** dhill1 has quit IRC
+*** mixi^ has joined #gnuenterprise
+*** wendall911 has left #gnuenterprise
+*** mixi^ has quit IRC
+<SachaS> night all
+*** SachaS has quit IRC
+*** mixi^ has joined #gnuenterprise
+*** havoc has quit IRC
+*** mixi has quit IRC
+*** __aaron__ has joined #gnuenterprise
+*** __aaron__ has quit IRC
+*** ajmitch has joined #gnuenterprise
