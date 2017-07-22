@@ -29,8 +29,11 @@ def load_sample(file='data/sample_chat.json'):
     return sample
 
 
-def load_sample_text(file='data/sample_chat.json'):
-    return ". ".join(d['content'] for d in load_sample(file))
+def load_sample_text(file='data/sample_chat.json', lines=None):
+    messages = [d['content'] for d in load_sample(file)]
+    if lines is not None:
+        messages = messages[:lines]
+    return ". ".join(messages)
 
 
 def representative_msgs(messages: List[Message]) -> List[Message]:
