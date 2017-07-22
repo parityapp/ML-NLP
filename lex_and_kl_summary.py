@@ -156,47 +156,22 @@ def summarize_kl(input_text):
     return sum_text_to_write
 
 
-def load_collection_sentences(directory):
-    files = get_all_files(directory)
-    li = list()
-    for f in files:
-        sents = load_file_sentences(f)
-        li.extend(sents)
-    return li
+def load_collection_tokens(text):
+    tokens = word_tokenize(text)
 
+    with open(STOPWORDS_PATH, "r") as stopf:
+        stop_words = stopf.readlines()
 
-def load_collection_tokens(directory):
-    files = get_all_files(directory)
-    li = list()
-    for f in files:
-        tokens = load_file_tokens(f)
-        li.extend(tokens)
-
-    stopf = open(STOPWORDS_PATH, "r")
-    stop_words = stopf.readlines()
-    stopf.close()
     stop_words = [word.strip() for word in stop_words]
 
-    temp = list(set(li)-set(stop_words))
+    temp = list(set(tokens)-set(stop_words))
     return temp
 
 
-def load_file_sentences(filepath):
-    file1 = open(filepath)
-    sent = file1.read()
-    return sent_tokenize(sent)
-
-
-def load_file_tokens(filepath):
-    file1 = open(filepath)
-    text = file1.read()
-    return word_tokenize(text)
-
-
-def makeVectDict(dir):
+def makeVectDict(text):
     vectDict = dict()
-    words = load_collection_tokens(dir)
-    sentences = load_collection_sentences(dir)
+    words = load_collection_tokens(text)
+    sentences = sent_tokenize(text)
     # make vector for sentence
     for sentence in sentences:
         temp_sent = word_tokenize(sentence)
