@@ -8,7 +8,6 @@ from __future__ import division
 import operator
 import nltk
 import string
-from summarization import load_sample_text
 
 
 def isPunct(word):
@@ -87,12 +86,14 @@ class RakeKeywordExtractor:
                        sorted_phrase_scores[0:int(n_phrases/self.top_fraction)])
 
 
-def test():
+def topic_extraction(text, num_topics=5):
     rake = RakeKeywordExtractor()
-    text = load_sample_text(lines=40)
     keywords = rake.extract(text, incl_scores=True)
-    return [t[0] for t in keywords[:5]]
+    return [t[0] for t in keywords[:num_topics]]
 
 
 if __name__ == "__main__":
-    print(test())
+    from summarization import load_sample_text
+    text = load_sample_text(lines=40)
+    topics = topic_extraction(text)
+    print(topics)
