@@ -12,15 +12,21 @@ This module contains the routines for:
 
 from typing import List, Dict, NewType
 from datetime import datetime
+import dateutil
 import json
 
 
 Message = Dict[str, datetime]
 
 
-def load_sample(file='sample.json'):
+def load_sample(file='data/sample_chat.json'):
     with open(file, 'r') as f:
-        return json.load(f)
+        sample = json.load(f)
+
+    for d in sample:
+        d['timestamp'] = dateutil.parser.parse(d['timestamp'])
+
+    return sample
 
 
 def representative_msgs(messages: List[Message]) -> List[Message]:
