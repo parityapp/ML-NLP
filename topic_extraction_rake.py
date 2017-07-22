@@ -1,8 +1,13 @@
-'''from gensim.summarization import keywords
-from summarization import load_sample_text
-text=load_sample_text(lines=40)
-print ('Keywords:')
-print (keywords(text))'''
+#!/usr/bin/env python
+
+"""Topic Extraction using NLTK
+
+CERN Webfest 2017
+
+This file contains routines for
+    - Topic Extraction
+
+"""
 
 from __future__ import division
 import operator
