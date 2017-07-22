@@ -3,6 +3,7 @@
 import json
 import sys
 from datetime import datetime
+import re
 
 
 def irc2json(text):
@@ -14,6 +15,10 @@ def irc2json(text):
             continue
         user, content = line.split('> ', 1)
         user = user.strip('<>')
+        content = re.sub(r'<.*>', '', content)
+
+        if '<' in content:
+            print(line)
         time = datetime.now().isoformat()
 
         message = {
