@@ -14,38 +14,39 @@ from datetime import datetime
 from typing import List, Dict
 
 from utils import whole_text
-
 from ntlk_rake import topic_extraction_rake
-
 from gensim.summarization import summarize, keywords
-
 from textrank import representative_msgs_textrank
-
 from lex_and_kl_summary import summarize_kl, summarize_lexpagerank
 
 Message = Dict[str, datetime]
 
+REPRESENTATIVE_METHODS = ['textrank'] #, 'gensim']
+SUMMARIZE_METHODS = ['gensim', 'lexrank', 'kl']
+KEYWORDS_METHODS = ['RAKE', 'gensim']
 
-def representative_msgs(messages: List[Message], method) -> List[Message]:
+
+def representative_msgs(messages: List[Message], method='textrank') -> List[Message]:
 
     if method == 'textrank':
-        return representative_msgs_texrank(messages)
-    elif method == 'gensim':
-        return summarize(text, split=True)
+        return representative_msgs_textrank(messages)
+    # elif method == 'gensim':
+    #     text =
+    #     return summarize(text, split=True)
 
 
-def summarize_msgs(messages: List[Message], method) -> str:
+def summarize_msgs(messages: List[Message], method='kl') -> str:
     text = whole_text(messages)
 
     if method == 'gensim':
         return summarize(text)
     elif method == 'lexrank':
-        summarize_lexpagerank(text)
-    elif metod == 'kl':
-        summarize_kl(text)
+        return summarize_lexpagerank(text)
+    elif method == 'kl':
+        return summarize_kl(text)
 
 
-def relevant_topics(messages: List[Message], method) -> List[str]:
+def keywords_from_msgs(messages: List[Message], method='gensim') -> List[str]:
 
     text = whole_text(messages)
 
@@ -53,3 +54,5 @@ def relevant_topics(messages: List[Message], method) -> List[str]:
         return topic_extraction_rake(text)
     elif method == 'gensim':
         return keywords(text)
+    elif method == 'mglda':
+        raise NotImplementedError("Not Yet")

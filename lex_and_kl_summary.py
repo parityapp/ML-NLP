@@ -16,6 +16,7 @@ from utils import load_sample_text
 
 STOPWORDS_PATH = 'data/stopwords.txt'
 SUMMARY_MAX = 100
+SUMMARY_MAX_KL = 100
 
 
 def load_topic_words(topic_file, n):
@@ -110,7 +111,8 @@ def get_unigram_dist(text):
 
 def summarize_kl(input_text):
 
-    list_sen = input_text.split('\n')
+    # list_sen = input_text.split('\n')
+    list_sen = sent_tokenize(input_text)
 
     input_unigram_dist = get_unigram_dist(input_text)
 
@@ -119,7 +121,7 @@ def summarize_kl(input_text):
     sen_list = []
     sen_ind = []
 
-    while(len(word_tokenize(sum_text)) < SUMMARY_MAX):
+    while(len(word_tokenize(sum_text)) < SUMMARY_MAX_KL):
         min_kl = 100000.0
         best_sentence = ''
 
@@ -146,8 +148,8 @@ def summarize_kl(input_text):
                     best_ind_i = ind_i
                     best_ind_j = ind_j
 
-        sum_text = sum_text + best_sentence+' '
-        sum_text_to_write = sum_text_to_write + best_sentence+'\n'
+        sum_text += best_sentence+' '
+        sum_text_to_write += best_sentence+'\n'
         sen_list.append(best_sentence)
         sen_ind.append((best_ind_i, best_ind_j))
 
@@ -252,7 +254,7 @@ def summarize_lexpagerank(text):
         if valid(sent, summary, vectDict, 0.75):
             sumLength += len(word_tokenize(sent))
             summary.append(sent)
-            if sumLength > 100:
+            if sumLength > SUMMARY_MAX:
                 break
 
     # construct text with sentences
