@@ -13,14 +13,14 @@ This file contains routines for
 import networkx as nx
 import numpy as np
 
-from nltk.tokenize.punkt import PunktSentenceTokenizer
+from nltk import sent_tokenize
+
 from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
 
 
 def textrank(document, tokenize=True):
     if tokenize:
-        sentence_tokenizer = PunktSentenceTokenizer()
-        sentences = sentence_tokenizer.tokenize(document)
+        sentences = sent_tokenize(document)
     else:
         sentences = document
 
@@ -62,9 +62,5 @@ def textrank(document, tokenize=True):
     return seq_list
 
 
-def summarize_textrank():
-    pass
-
-
-def representative_msgs_textrank():
+def representative_msgs_textrank(messages):
     pass
