@@ -13,7 +13,7 @@ This module contains the routines for:
 from datetime import datetime
 from typing import List, Dict
 
-from utils import whole_text
+from utils import whole_text, sort_summary
 from ntlk_rake import topic_extraction_rake
 from gensim.summarization import summarize, keywords
 from textrank import representative_msgs_textrank
@@ -35,7 +35,7 @@ def representative_msgs(messages: List[Message], method='textrank') -> List[Mess
     #     return summarize(text, split=True)
 
 
-def summarize_msgs(messages: List[Message], method='kl') -> str:
+def summarize_msgs(messages: List[Message], method='lexrank') -> str:
     text = whole_text(messages)
 
     if method == 'gensim':
