@@ -15,6 +15,8 @@ import dateutil.parser
 import json
 from typing import List, Dict
 
+from nltk import sent_tokenize, word_tokenize
+
 from ntlk_rake import topic_extraction_rake
 
 from gensim.summarization import summarize
@@ -45,6 +47,16 @@ def load_sample(file='data/sample_chat.json'):
 
 def load_sample_text(file='data/sample_chat.json', lines=None):
     return whole_text(load_sample(text), lines=lines)
+
+
+def tokenize_for_mglda(messages):
+
+    def _tokenize_message(message):
+        sentences = sent_tokenize(message)
+        tokenized_sentences = [word_tokenize(s) for s in sentences]
+        return tokenized_sentences
+
+    return [_tokenize_message(m['content']) for m in messages]
 
 
 def representative_msgs(messages: List[Message], method) -> List[Message]:
