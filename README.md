@@ -3,11 +3,6 @@
 
 The Parity App uses the following Natural Language Processing and Machine Learning routines for answering the users queries.
 
-## Libraries and their versions:
-1. Numpy
-2. Scikit-learn
-3. Gensim
-
 ## Algoritms Implemented:
 ### 1. For Message Summary:
 #### (a) KL Divergence : (Implemented from scratch)
