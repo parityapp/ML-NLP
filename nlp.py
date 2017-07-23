@@ -35,15 +35,15 @@ def representative_msgs(messages: List[Message], method='textrank') -> List[Mess
     #     return summarize(text, split=True)
 
 
-def summarize_msgs(messages: List[Message], method='lexrank') -> str:
+def summarize_msgs(messages: List[Message], method='kl') -> str:
     text = whole_text(messages)
 
     if method == 'gensim':
         return summarize(text)
     elif method == 'lexrank':
-        return summarize_lexpagerank(text)
+        return sort_summary(summarize_lexpagerank(text), messages)
     elif method == 'kl':
-        return summarize_kl(text)
+        return sort_summary(summarize_kl(text), messages)
 
 
 def keywords_from_msgs(messages: List[Message], method='gensim') -> List[str]:
