@@ -27,4 +27,6 @@ A opensource python library providing various functions including keyword Extrac
 #### (a) Gensim :
 A opensource python library provides keyword tokens
 
+#### (b) TexRank :
+it is a graph based ranking model for text processing that employs the pagerank graph on top of unsupervised representation of a graph.
   
