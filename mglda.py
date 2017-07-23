@@ -6,7 +6,7 @@
  # (c)2012 Masanao Ochi.
 
 import numpy
-from nlp import tokenize_for_mglda, load_sample
+from utils import tokenize_for_mglda, load_sample
 
 
 class MGLDA:
@@ -204,7 +204,7 @@ class MGLDA:
                     new_p_v_r_z_idx = numpy.random.multinomial(1, np_p_v_r_z / np_p_v_r_z.sum()).argmax()
                     new_v, new_r, new_z = label_v_r_z[new_p_v_r_z_idx]
 
-                     # update
+                    # update
                     if new_r == "gl":
                         self.n_gl_z_w[new_z][word]          += 1
                         self.n_gl_z[new_z]                  += 1
@@ -255,15 +255,15 @@ def output_word_topic_dist(mglda, voca):
                 if r == "gl":
                     z_gl_count[z] += 1
                     if word in word_gl_count[z]:
-                        word_gl_count[z][word]  += 1
+                        word_gl_count[z][word] += 1
                     else:
-                        word_gl_count[z][word]   = 1
+                        word_gl_count[z][word] = 1
                 elif r == "loc":
                     z_loc_count[z] += 1
                     if word in word_loc_count[z]:
                         word_loc_count[z][word] += 1
                     else:
-                        word_loc_count[z][word]  = 1
+                        word_loc_count[z][word] = 1
                 else:
                     print(("error3: " + str(r)))
 
