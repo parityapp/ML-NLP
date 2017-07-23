@@ -12,7 +12,9 @@ import sys
 from nltk.corpus import wordnet as wn
 from nltk import word_tokenize, sent_tokenize
 
-STOPWORDS_PATH = 'stopwords.txt'
+from utils import load_sample_text
+
+STOPWORDS_PATH = 'data/stopwords.txt'
 SUMMARY_MAX = 100
 
 
@@ -262,12 +264,7 @@ def summarize_lexpagerank(text):
 
 
 if __name__ == "__main__":
-    text = ""
-
-    for file in sys.argv[1:]:
-        with open(file, 'r') as f:
-            text += f.read()
-            text += '\n'
+    text = load_sample_text()
 
     base = summarize_baseline(text)
 
