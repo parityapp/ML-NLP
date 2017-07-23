@@ -31,3 +31,13 @@ def tokenize_for_mglda(messages):
         return tokenized_sentences
 
     return [_tokenize_message(m['content']) for m in messages]
+
+
+def sort_summary(text, messages):
+    sentences = sent_tokenize(text)
+    sentences = [s.strip('. ') for s in sentences]
+    sorted_sents = []
+    for message in messages:
+        if any(s in message['content'] for s in sentences):
+            sorted_sents.append(message['content'])
+    return ". ".join(sorted_sents)
