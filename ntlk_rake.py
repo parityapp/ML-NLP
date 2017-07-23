@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""Topic Extraction using NLTK
+"""Topic Extraction using NLTK RakeKeywordExtractor
 
 CERN Webfest 2017
 
@@ -91,7 +91,7 @@ class RakeKeywordExtractor:
                        sorted_phrase_scores[0:int(n_phrases/self.top_fraction)])
 
 
-def topic_extraction(text, num_topics=5):
+def topic_extraction_rake(text, num_topics=5):
     rake = RakeKeywordExtractor()
     keywords = rake.extract(text, incl_scores=True)
     return [t[0] for t in keywords[:num_topics]]
@@ -100,5 +100,5 @@ def topic_extraction(text, num_topics=5):
 if __name__ == "__main__":
     from summarization import load_sample_text
     text = load_sample_text(lines=40)
-    topics = topic_extraction(text)
+    topics = topic_extraction_rake(text)
     print(topics)
