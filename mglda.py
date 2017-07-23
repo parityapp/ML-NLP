@@ -6,6 +6,8 @@
  # (c)2012 Masanao Ochi.
 
 import numpy
+from nlp import tokenize_for_mglda, load_sample
+
 
 class MGLDA:
     def __init__(self, K_gl, K_loc, gamma, alpha_gl, alpha_loc, alpha_mix_gl, alpha_mix_loc, beta_gl, beta_loc, T, docs, W, smartinit=False):
@@ -267,27 +269,24 @@ def output_word_topic_dist(mglda, voca):
 
     phi_gl, phi_loc = mglda.worddist()
     for k in range(mglda.K_gl):
-        print(( "\n-- global topic: %d (%d words)" % (k, z_gl_count[k])))
+        print(("\n-- global topic: %d (%d words)" % (k, z_gl_count[k])))
         print ("mglda.n_gl_z[k]")
         print((mglda.n_gl_z[k]))
         for w in numpy.argsort(-phi_gl[k])[:20]:
-            print(("%s: %f (%d)" % (voca[w], phi_gl[k,w], word_gl_count[k].get(w,0))))
+            print(("%s: %f (%d)" % (voca[w], phi_gl[k, w], word_gl_count[k].get(w, 0))))
 
     for k in range(mglda.K_loc):
         print(("\n-- local topic: %d (%d words)" % (k, z_loc_count[k])))
         print((mglda.n_loc_z[k]))
         print ("mglda.n_loc_z[k]")
         for w in numpy.argsort(-phi_loc[k])[:20]:
-            print(("%s: %f (%d)" % (voca[w], phi_loc[k,w], word_loc_count[k].get(w,0))))
+            print(("%s: %f (%d)" % (voca[w], phi_loc[k, w], word_loc_count[k].get(w, 0))))
+
 
 def test():
- #    import nltk.corpus
     import vocabulary_for_mglda as vocabulary
-
-     # corpus = vocabulary.load_corpus_each_sentence("0:2000")
-    corpus = vocabulary.load_corpus_each_sentence("0:1")
-     # print (corpus)
-     # docs[sentence_idx][word_idx]
+    # corpus = vocabulary.load_corpus_each_sentence("0:1")
+    corpus = tokenize_for_mglda(load_sample())
     voca = vocabulary.Vocabulary(True)
     docs = [voca.doc_to_ids_each_sentence(doc) for doc in corpus]
     K_gl, K_loc, gamma, alpha_gl, alpha_loc, alpha_mix_gl, alpha_mix_loc, beta_gl, beta_loc, T, docs, W = 50, 10, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 3, docs, voca.size()
@@ -297,6 +296,6 @@ def test():
     iteration = 1000
     mglda_learning(mglda, iteration, voca)
 
+
 if __name__ == "__main__":
     test()
-    import vocabulary_for_mglda as vocabulary
